@@ -1,4 +1,3 @@
-
 jar {
     manifest {
         attributes(
@@ -7,12 +6,12 @@ jar {
         )
     }
 }
-
-
+jar {
+    from { configurations.runtimeClasspath.collect { zipTree(it) } }
+}
 mainClassName = 'ru.copypaste.CalculatorApp'
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
-
 
 
 }

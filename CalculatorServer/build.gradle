@@ -1,6 +1,5 @@
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
-    // https://mvnrepository.com/artifact/io.netty/netty-all
     compile group: 'io.netty', name: 'netty-all', version: '4.1.45.Final'
     compile group: 'io.netty', name: 'netty-transport-rxtx', version: '4.1.45.Final'
 }
@@ -14,4 +13,7 @@ jar {
                 'Main-Class': 'ru.copypaste.Server'
         )
     }
+}
+jar {
+    from { configurations.runtimeClasspath.collect { zipTree(it) } }
 }

@@ -1,5 +1,7 @@
 package ru.copypaste;
 
+import java.util.Optional;
+
 public interface Calculator {
     static Calculator getInstance() {
         return WindowCalculator.get();
@@ -7,7 +9,7 @@ public interface Calculator {
 
     // (10 + 10) + (10-2)
 
-    double getResult();
+    Optional<Double> getResult();
 
     void addMathBlock(MathBlock mathBlock);
 }
