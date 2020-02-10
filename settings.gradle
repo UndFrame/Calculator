@@ -1,2 +1,4 @@
 rootProject.name = 'Calculator'
+include 'CalculatorClient'
+include 'CalculatorServer'
 

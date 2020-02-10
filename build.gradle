@@ -1,25 +1,36 @@
-plugins {
-    id 'java'
-}
+apply plugin: "idea"
+apply plugin: "eclipse"
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'maven-publish'
+    apply plugin: 'application'
 
-group 'ru.copypaste'
-version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
+    group 'ru.copypaste'
+    version '1.0-SNAPSHOT'
 
-jar {
-    manifest {
-        attributes(
-                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-                'Main-Class': 'ru.copypaste.CalculatorApp'
-        )
+    sourceCompatibility = 1.8
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
     }
+
+    dependencies {
+        compileOnly 'org.projectlombok:lombok:1.18.10'
+        annotationProcessor 'org.projectlombok:lombok:1.18.10'
+    }
+
+
+
+    tasks.withType(JavaCompile) {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    task wrapper(type: Wrapper) {
+        gradleVersion = "1.12"
+    }
+
 }
 
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-}
